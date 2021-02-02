@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://misc/resource_ids.gd" type="Script" id=1]
+[ext_resource path="res://obstacles/type_2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://obstacles/type_3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://obstacles/type_1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://obstacles/type_0.tscn" type="PackedScene" id=5]
+
+[resource]
+script = ExtResource( 1 )
+ids = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
