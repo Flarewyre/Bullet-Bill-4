@@ -1,3 +1,4 @@
 class_name Level
 
-var rooms : Array
+var rooms := []
+var theme := 0

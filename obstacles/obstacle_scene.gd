@@ -1,7 +1,12 @@
 extends Node2D
 
+var index = 0
+
+func is_obstacle():
+	return true
+
 func set_height(height):
-	var sprite = $NinePatchRect
+	var sprite = $Sprite
 	var collision = $StaticBody2D/CollisionShape2D
 	
 	var new_shape = collision.shape.duplicate()
@@ -10,10 +15,11 @@ func set_height(height):
 	collision.shape = new_shape
 	collision.position = new_shape.extents
 
-	sprite.rect_size.y = (height * 16) + 32
+	sprite.region_rect.size.y = (height * 16) + 32
 
 func flip():
-	var sprite = $NinePatchRect
-
 	scale.y = -scale.y
 	position.y += 16
+
+func set_theme(theme):
+	$Sprite.texture = load(CurrentLevelData.theme_textures[theme])
