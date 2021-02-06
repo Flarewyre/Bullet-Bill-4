@@ -18,6 +18,8 @@ var amount_of_rooms : int
 var end := false
 var move_camera := true
 var shake_time := 0.0
+var current_zoom := Vector2(1, 1)
+var zoom_speed := 2.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
@@ -56,6 +58,9 @@ func _process(delta):
 		camera.offset = Vector2(rand_range(-1, 1)  * multiplier, rand_range(-1, 1) * multiplier)
 	else:
 		camera.offset = Vector2()
+	
+	camera.zoom = current_zoom / 4
+	current_zoom = lerp(current_zoom, Vector2(1, 1), delta * zoom_speed)
 	
 	if !move_camera or end: return
 	camera.position.x += 8

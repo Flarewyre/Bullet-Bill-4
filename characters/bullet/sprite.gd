@@ -4,6 +4,14 @@ export var rotation_speed := 0.0
 export var rot_multiplier := 0.0
 var stored_frame := 0.0
 
+const THEME_FRAMES = [
+	"res://characters/bullet/textures/grassland.tres",
+	"res://characters/bullet/textures/cave.tres"
+]
+
+func _ready():
+	frames = load(THEME_FRAMES[CurrentLevelData.level.theme])
+
 func _physics_process(delta):
 	var screen_pos = get_global_transform_with_canvas().origin
 	rotation_degrees = lerp(rotation_degrees, clamp((get_viewport().get_mouse_position().y - screen_pos.y) / 1.5, -35, 35), delta * rotation_speed)

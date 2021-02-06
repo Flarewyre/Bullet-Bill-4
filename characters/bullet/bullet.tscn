@@ -1,6 +1,6 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://characters/bullet/spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://characters/bullet/textures/cave.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://characters/bullet/bullet.gd" type="Script" id=2]
 [ext_resource path="res://characters/bullet/sprite.gd" type="Script" id=3]
 [ext_resource path="res://characters/bullet/fire.gd" type="Script" id=4]
@@ -8,79 +8,36 @@
 [ext_resource path="res://characters/bullet/theme_reverb.gd" type="Script" id=6]
 [ext_resource path="res://characters/bullet/impact.wav" type="AudioStream" id=7]
 [ext_resource path="res://characters/bullet/bomb.png" type="Texture" id=8]
+[ext_resource path="res://objects/bricks/hit.wav" type="AudioStream" id=9]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 19, 20 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 19, 0, 19, 20 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 38, 0, 19, 20 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 57, 0, 19, 20 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 76, 0, 19, 20 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
-region = Rect2( 95, 0, 19, 20 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 114, 0, 19, 20 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 1 )
-region = Rect2( 133, 0, 19, 20 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 1 )
-region = Rect2( 152, 0, 19, 20 )
-
-[sub_resource type="SpriteFrames" id=10]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 4 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 8 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 8 )
 region = Rect2( 0, 32, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 8 )
 region = Rect2( 32, 32, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=17]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "default",
 "speed": 12.0
 } ]
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=7]
 resource_name = "die"
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:visible")
@@ -140,8 +97,7 @@ script = ExtResource( 2 )
 reaction_speed = 15.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 10 )
-frame = 4
+frames = ExtResource( 1 )
 script = ExtResource( 3 )
 rotation_speed = 8.0
 rot_multiplier = 8.0
@@ -150,7 +106,7 @@ rot_multiplier = 8.0
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 11 )
+shape = SubResource( 1 )
 
 [node name="Sounds" type="Node2D" parent="."]
 script = ExtResource( 6 )
@@ -166,18 +122,21 @@ script = ExtResource( 4 )
 stream = ExtResource( 7 )
 volume_db = -12.0
 
+[node name="Brick" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 9 )
+volume_db = -16.0
+
 [node name="Effects" type="Node2D" parent="."]
 
 [node name="BOMB" type="AnimatedSprite" parent="Effects"]
 visible = false
 z_index = 20
 z_as_relative = false
-frames = SubResource( 17 )
-frame = 3
+frames = SubResource( 6 )
 playing = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/die = SubResource( 12 )
+anims/die = SubResource( 7 )

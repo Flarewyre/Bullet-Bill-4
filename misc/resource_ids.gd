@@ -1,1 +1,1 @@
-export var ids : Array
+export(Array, String) var ids

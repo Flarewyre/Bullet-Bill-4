@@ -9,5 +9,5 @@ const theme_textures = [
 ]
 
 func _init():
-	for index in range(50):
+	for index in range(25):
 		level.rooms.append(RoomData.new())

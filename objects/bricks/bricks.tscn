@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://objects/bricks/textures/grassland/brick_fx.png" type="Texture" id=1]
+[ext_resource path="res://objects/bricks/textures/cave/frames.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://objects/bricks/bricks.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.887417, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "break"
+length = 1.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BreakParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.01 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "despawn"
+} ]
+}
+
+[node name="Bricks" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 2 )
+playing = true
+centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 8, 8 )
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+
+[node name="BreakParticles" type="CPUParticles2D" parent="."]
+position = Vector2( 8, 8 )
+emitting = false
+amount = 6
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 1 )
+direction = Vector2( 0, -1 )
+spread = 15.0
+gravity = Vector2( 0, 392 )
+initial_velocity = 134.41
+initial_velocity_random = 0.45
+angular_velocity = 588.39
+angular_velocity_random = 1.0
+angle = 92.9
+angle_random = 1.0
+color_ramp = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/break = SubResource( 5 )
