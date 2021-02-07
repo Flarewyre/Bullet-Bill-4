@@ -124,7 +124,7 @@ volume_db = -12.0
 
 [node name="Brick" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 9 )
-volume_db = -16.0
+volume_db = -20.0
 
 [node name="Effects" type="Node2D" parent="."]
 
@@ -133,6 +133,7 @@ visible = false
 z_index = 20
 z_as_relative = false
 frames = SubResource( 6 )
+frame = 1
 playing = true
 
 [node name="Timer" type="Timer" parent="."]

@@ -13,6 +13,9 @@ onready var area = $Area2D
 onready var animation_player = $AnimationPlayer
 
 onready var brick_sound = $Sounds/Brick
+onready var camera = get_node("../Camera2D")
+
+var last_camera_pos : Vector2
 
 func is_character():
 	pass
@@ -31,7 +34,9 @@ func _physics_process(delta):
 			combo_reset_timer = 0
 			brick_combo = 0
 	
-	position = lerp(position, get_global_mouse_position(), delta * reaction_speed)
+	var current_camera_pos = camera.position + camera.offset
+	position = lerp(position, get_global_mouse_position() + ((current_camera_pos - last_camera_pos) * 4), delta * reaction_speed)
+	last_camera_pos = current_camera_pos
 
 func kill(body):
 	dead = true
@@ -50,6 +55,6 @@ func break_effect():
 	combo_reset_timer = 0.35
 	brick_combo = clamp(brick_combo + 1, 0, 8)
 	
-	get_tree().get_current_scene().shake_time = 0.1 + (float(brick_combo) / 70.0)
-	var zoom_amount = 0.94 - (float(brick_combo) / 70.0)
+	get_tree().get_current_scene().shake_time = 0.125 + (float(brick_combo) / 150.0)
+	var zoom_amount = 0.94 - (float(brick_combo) / 75.0)
 	get_tree().get_current_scene().current_zoom = Vector2(zoom_amount, zoom_amount)

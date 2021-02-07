@@ -31,6 +31,7 @@ func load_room(room, index):
 	var new_room = load(ROOM_SCENE).instance()
 	loaded_rooms.append(new_room)
 	new_room.name = "Room_" + str(index)
+	new_room.room_index = index
 	new_room.load_room()
 	new_room.position.x = ROOM_OFFSET.x * index
 	rooms_node.add_child(new_room)

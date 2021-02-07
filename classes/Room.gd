@@ -3,7 +3,7 @@ extends Node2D
 const BOUNDS = Vector2(26, 15)
 var obstacles := []
 var objects := []
-var room_index = 0
+var room_index := 0
 
 func _init():
 	pass
