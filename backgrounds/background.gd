@@ -2,10 +2,16 @@ extends CanvasLayer
 
 const THEME_BGS = [
 	"res://backgrounds/clouds/texture.png",
-	"res://backgrounds/cave/texture.png"
+	"res://backgrounds/cave/texture.png",
+	"res://backgrounds/water/texture.tres",
+	"res://backgrounds/castle/texture.png",
+	"res://backgrounds/night/texture.tres"
 ]
 
 const THEME_REPEATS = [
+	512,
+	512,
+	512,
 	512,
 	512
 ]

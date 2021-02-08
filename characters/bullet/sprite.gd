@@ -6,7 +6,10 @@ var stored_frame := 0.0
 
 const THEME_FRAMES = [
 	"res://characters/bullet/textures/grassland.tres",
-	"res://characters/bullet/textures/cave.tres"
+	"res://characters/bullet/textures/cave.tres",
+	"res://characters/bullet/textures/grassland.tres",
+	"res://characters/bullet/textures/grassland.tres",
+	"res://characters/bullet/textures/grassland.tres"
 ]
 
 func _ready():

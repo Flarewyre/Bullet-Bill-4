@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://level_loader.gd" type="Script" id=1]
 [ext_resource path="res://characters/bullet/bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://backgrounds/clouds/texture.png" type="Texture" id=3]
 [ext_resource path="res://backgrounds/background.gd" type="Script" id=4]
+[ext_resource path="res://overlays.tscn" type="PackedScene" id=5]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -33,3 +34,5 @@ position = Vector2( 2048, 0 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 centered = false
+
+[node name="Overlays" parent="." instance=ExtResource( 5 )]

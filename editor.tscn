@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://editor.gd" type="Script" id=1]
 [ext_resource path="res://obstacles/grassland/sheet.png" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://ui/editor/enemies_button.png" type="Texture" id=22]
 [ext_resource path="res://ui/editor/enemies_button_hover.png" type="Texture" id=23]
 [ext_resource path="res://ui/editor/misc_button.png" type="Texture" id=24]
+[ext_resource path="res://overlays.tscn" type="PackedScene" id=25]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 3 )
@@ -34,30 +35,29 @@ script/source = "extends Sprite
 export(Array, String) var ids
 "
 
-[sub_resource type="Gradient" id=10]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.5 )
 colors = PoolColorArray( 0.14902, 0.262745, 1, 0.329412, 0.615686, 0.14902, 1, 0.329412 )
 
-[sub_resource type="GradientTexture" id=11]
-gradient = SubResource( 10 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 width = 416
 
-[sub_resource type="Gradient" id=12]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.5, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0.298039, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=13]
-gradient = SubResource( 12 )
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
 width = 416
 
-[sub_resource type="ViewportTexture" id=3]
+[sub_resource type="ViewportTexture" id=7]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 624, 351 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "close_Obstacles"
+[sub_resource type="Animation" id=9]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Buttons:rect_scale")
@@ -132,8 +132,7 @@ tracks/5/keys = {
 "values": [ Vector2( 205.48, 805 ), Vector2( 205.48, 853 ) ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "flip_Obstacles"
+[sub_resource type="Animation" id=10]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Obstacles:rect_scale")
@@ -186,8 +185,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "open_Obstacles"
+[sub_resource type="Animation" id=11]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Buttons:rect_scale")
@@ -333,7 +331,7 @@ visible = false
 texture = ExtResource( 3 )
 centered = false
 script = SubResource( 2 )
-ids = [ "res://objects/bricks/textures/grassland/preview.png", "res://objects/bricks/textures/cave/preview.png" ]
+ids = [ "res://objects/bricks/textures/grassland/preview.png", "res://objects/bricks/textures/cave/preview.png", "res://objects/bricks/textures/underwater/preview.png", "res://objects/bricks/textures/castle/preview.png", "res://objects/bricks/textures/cave/preview.png" ]
 
 [node name="Backgrounds" type="CanvasLayer" parent="Viewport"]
 layer = -20
@@ -350,6 +348,8 @@ position = Vector2( 2048, 0 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 5 )
 centered = false
+
+[node name="Overlays" parent="Viewport" instance=ExtResource( 25 )]
 
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
@@ -376,7 +376,7 @@ margin_right = 1360.0
 margin_bottom = -400.0
 rect_rotation = 45.0
 rect_scale = Vector2( 4, 4 )
-texture = SubResource( 11 )
+texture = SubResource( 4 )
 stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -389,7 +389,7 @@ margin_right = 1360.0
 margin_bottom = -403.361
 rect_rotation = 45.0
 rect_scale = Vector2( 4, 4 )
-texture = SubResource( 13 )
+texture = SubResource( 6 )
 stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -401,7 +401,7 @@ margin_top = 64.0
 margin_right = 1456.0
 margin_bottom = 766.0
 mouse_filter = 0
-texture = SubResource( 3 )
+texture = SubResource( 7 )
 expand = true
 stretch_mode = 1
 flip_v = true
@@ -421,12 +421,13 @@ __meta__ = {
 }
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 position = Vector2( 832, 415 )
 collision_layer = 524288
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="Buttons" type="HBoxContainer" parent="."]
 margin_left = 208.0
@@ -634,9 +635,9 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/close_Obstacles = SubResource( 6 )
-anims/flip_Obstacles = SubResource( 8 )
-anims/open_Obstacles = SubResource( 7 )
+anims/close_Obstacles = SubResource( 9 )
+anims/flip_Obstacles = SubResource( 10 )
+anims/open_Obstacles = SubResource( 11 )
 
 [node name="ScreenDetectArea" type="Area2D" parent="."]
 modulate = Color( 0.996078, 1, 0.584314, 1 )

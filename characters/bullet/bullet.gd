@@ -24,6 +24,7 @@ func _ready():
 	var _connect = timer.connect("timeout", self, "restart")
 	_connect = area.connect("body_entered", self, "kill")
 	middle_pos = Vector2(208, 117)
+	last_camera_pos = camera.position + camera.offset
 
 func _physics_process(delta):
 	if dead: return

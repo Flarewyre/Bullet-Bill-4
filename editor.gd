@@ -18,6 +18,7 @@ onready var rooms_node = $Viewport/Rooms
 onready var previews_node = $Viewport/Previews
 onready var delete_area = $Viewport/DeleteArea
 onready var backgrounds = $Viewport/Backgrounds
+onready var overlays = $Viewport/Overlays
 
 onready var screen_detect_area = $ScreenDetectArea
 
@@ -147,6 +148,7 @@ func _input(event):
 		CurrentLevelData.level.theme = wrapi(CurrentLevelData.level.theme + 1, 0, CurrentLevelData.theme_textures.size())
 		current_room_node.load_room()
 		backgrounds.change_texture()
+		overlays.change_overlay()
 		
 		for preview in previews_node.get_children():
 			if preview.name != "Bricks":

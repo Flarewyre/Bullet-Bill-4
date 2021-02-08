@@ -3,7 +3,10 @@ extends AudioStreamPlayer
 const EDITOR_MUSIC := "res://music/editor.ogg"
 const LEVEL_THEMES := [
 	"res://music/level_themes/overworld.ogg",
-	"res://music/level_themes/underground.ogg"
+	"res://music/level_themes/underground.ogg",
+	"res://music/level_themes/underwater.ogg",
+	"res://music/level_themes/castle.ogg",
+	"res://music/level_themes/night.ogg"
 ]
 
 var last_mode := 0

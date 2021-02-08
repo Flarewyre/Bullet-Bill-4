@@ -7,12 +7,18 @@ var index = 0
 
 const THEME_FRAMES = [
 	"res://objects/bricks/textures/grassland/frames.tres",
-	"res://objects/bricks/textures/cave/frames.tres"
+	"res://objects/bricks/textures/cave/frames.tres",
+	"res://objects/bricks/textures/underwater/frames.tres",
+	"res://objects/bricks/textures/castle/frames.tres",
+	"res://objects/bricks/textures/grassland/frames.tres"
 ]
 
 const THEME_FX = [
 	"res://objects/bricks/textures/grassland/brick_fx.png",
-	"res://objects/bricks/textures/cave/brick_fx.png"
+	"res://objects/bricks/textures/cave/brick_fx.png",
+	"res://objects/bricks/textures/underwater/brick_fx.png",
+	"res://objects/bricks/textures/castle/brick_fx.png",
+	"res://objects/bricks/textures/grassland/brick_fx.png"
 ]
 
 var broken := false

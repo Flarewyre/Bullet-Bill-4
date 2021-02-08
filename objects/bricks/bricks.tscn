@@ -4,13 +4,13 @@
 [ext_resource path="res://objects/bricks/textures/cave/frames.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://objects/bricks/bricks.gd" type="Script" id=3]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0.887417, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "break"
 length = 1.15
 tracks/0/type = "value"
@@ -66,7 +66,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="BreakParticles" type="CPUParticles2D" parent="."]
 position = Vector2( 8, 8 )
@@ -84,7 +84,7 @@ angular_velocity = 588.39
 angular_velocity_random = 1.0
 angle = 92.9
 angle_random = 1.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/break = SubResource( 5 )
+anims/break = SubResource( 3 )
