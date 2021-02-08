@@ -331,7 +331,7 @@ visible = false
 texture = ExtResource( 3 )
 centered = false
 script = SubResource( 2 )
-ids = [ "res://objects/bricks/textures/grassland/preview.png", "res://objects/bricks/textures/cave/preview.png", "res://objects/bricks/textures/underwater/preview.png", "res://objects/bricks/textures/castle/preview.png", "res://objects/bricks/textures/cave/preview.png" ]
+ids = [ "res://objects/bricks/textures/grassland/preview.png", "res://objects/bricks/textures/cave/preview.png", "res://objects/bricks/textures/underwater/preview.png", "res://objects/bricks/textures/castle/preview.png", "res://objects/bricks/textures/grassland/preview.png" ]
 
 [node name="Backgrounds" type="CanvasLayer" parent="Viewport"]
 layer = -20
