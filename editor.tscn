@@ -430,6 +430,7 @@ collision_mask = 0
 shape = SubResource( 8 )
 
 [node name="Buttons" type="HBoxContainer" parent="."]
+visible = false
 margin_left = 208.0
 margin_top = 805.0
 margin_right = 1455.0
@@ -488,10 +489,9 @@ texture_hover = ExtResource( 8 )
 expand = true
 
 [node name="Obstacles" type="HBoxContainer" parent="."]
-visible = false
-margin_left = 208.0
+margin_left = 205.48
 margin_top = 805.0
-margin_right = 1455.0
+margin_right = 1452.48
 margin_bottom = 901.0
 custom_constants/separation = 15
 script = ExtResource( 14 )

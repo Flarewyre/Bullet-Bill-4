@@ -28,6 +28,7 @@ func _ready():
 	change_texture()
 	
 	sprite_2.position.x = x_repeat * 4
+	last_position = camera.position + camera.offset
 
 func change_texture():
 	sprite.texture = load(THEME_BGS[CurrentLevelData.level.theme])

@@ -8,6 +8,9 @@ var mode := 0
 
 onready var rooms_node = $Rooms
 onready var camera = $Camera2D
+onready var animation_player = $AnimationPlayer
+
+onready var platform = $Intro/Platform
 
 var loaded_rooms := []
 var current_room := 0
@@ -16,7 +19,7 @@ var level_cached : Level
 var amount_of_rooms : int
 
 var end := false
-var move_camera := true
+export var move_camera := false
 var shake_time := 0.0
 var current_zoom := Vector2(1, 1)
 var zoom_speed := 2.0
@@ -26,6 +29,8 @@ func _ready():
 	Input.set_custom_mouse_cursor(load("res://misc/cursor_hidden.png"))
 
 	load_level(CurrentLevelData.level)
+	animation_player.play("start")
+	platform.texture = load(CurrentLevelData.theme_textures[CurrentLevelData.level.theme])
 
 func load_room(room, index):
 	var new_room = load(ROOM_SCENE).instance()
@@ -48,7 +53,7 @@ func load_level(level : Level):
 	load_room(level.rooms[0], 0)
 	load_room(level.rooms[1], 1)
 
-func _process(delta):
+func _physics_process(delta):
 	
 	OS.set_window_title(str(Engine.get_frames_per_second()))
 	

@@ -16,6 +16,7 @@ onready var brick_sound = $Sounds/Brick
 onready var camera = get_node("../Camera2D")
 
 var last_camera_pos : Vector2
+export var can_move := false
 
 func is_character():
 	pass
@@ -25,9 +26,10 @@ func _ready():
 	_connect = area.connect("body_entered", self, "kill")
 	middle_pos = Vector2(208, 117)
 	last_camera_pos = camera.position + camera.offset
+	animation_player.play("start")
 
 func _physics_process(delta):
-	if dead: return
+	if !can_move or dead: return
 	
 	if combo_reset_timer > 0:
 		combo_reset_timer -= delta
