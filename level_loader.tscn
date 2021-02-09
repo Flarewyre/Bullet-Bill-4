@@ -155,6 +155,7 @@ texture = ExtResource( 3 )
 centered = false
 
 [node name="Overlays" parent="." instance=ExtResource( 5 )]
+layer = 75
 
 [node name="Intro" type="Node2D" parent="."]
 

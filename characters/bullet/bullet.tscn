@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://characters/bullet/textures/cave.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://characters/bullet/bullet.gd" type="Script" id=2]
@@ -13,28 +13,48 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 4 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 32, 32 )
+region = Rect2( 0, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 8 )
-region = Rect2( 32, 0, 32, 32 )
+region = Rect2( 64, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 8 )
-region = Rect2( 0, 32, 32, 32 )
+region = Rect2( 128, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 8 )
-region = Rect2( 32, 32, 32, 32 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 8 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 8 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 8 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 8 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 8 )
+region = Rect2( 512, 0, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": false,
 "name": "default",
-"speed": 12.0
+"speed": 18.0
 } ]
 
 [sub_resource type="Animation" id=7]
@@ -91,6 +111,44 @@ tracks/3/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Effects/BOMB:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.01 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Effects/BOMB:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "transition"
+} ]
+}
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource( 2 )
@@ -131,10 +189,9 @@ volume_db = -20.0
 
 [node name="BOMB" type="AnimatedSprite" parent="Effects"]
 visible = false
-z_index = 20
+z_index = 100
 z_as_relative = false
 frames = SubResource( 6 )
-playing = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

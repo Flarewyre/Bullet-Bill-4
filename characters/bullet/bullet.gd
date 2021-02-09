@@ -44,8 +44,11 @@ func _physics_process(delta):
 func kill(body):
 	dead = true
 	get_tree().get_current_scene().move_camera = false
-	get_tree().get_current_scene().shake_time = 0.5
+	get_tree().get_current_scene().shake_time = 0.7
 	animation_player.play("die")
+
+func transition():
+	SceneTransitions.transition()
 
 func restart():
 	get_tree().reload_current_scene()

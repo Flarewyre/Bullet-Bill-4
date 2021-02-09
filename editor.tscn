@@ -429,8 +429,24 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 8 )
 
+[node name="ScreenDetectArea" type="Area2D" parent="."]
+modulate = Color( 0.996078, 1, 0.584314, 1 )
+collision_layer = 0
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenDetectArea"]
+shape = SubResource( 1 )
+
+[node name="RightLevelButtons" type="VBoxContainer" parent="."]
+margin_left = 1480.0
+margin_top = 432.0
+margin_right = 1564.0
+margin_bottom = 766.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Buttons" type="HBoxContainer" parent="."]
-visible = false
 margin_left = 208.0
 margin_top = 805.0
 margin_right = 1455.0
@@ -489,6 +505,7 @@ texture_hover = ExtResource( 8 )
 expand = true
 
 [node name="Obstacles" type="HBoxContainer" parent="."]
+visible = false
 margin_left = 205.48
 margin_top = 805.0
 margin_right = 1452.48
@@ -638,11 +655,3 @@ __meta__ = {
 anims/close_Obstacles = SubResource( 9 )
 anims/flip_Obstacles = SubResource( 10 )
 anims/open_Obstacles = SubResource( 11 )
-
-[node name="ScreenDetectArea" type="Area2D" parent="."]
-modulate = Color( 0.996078, 1, 0.584314, 1 )
-collision_layer = 0
-collision_mask = 524288
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenDetectArea"]
-shape = SubResource( 1 )
