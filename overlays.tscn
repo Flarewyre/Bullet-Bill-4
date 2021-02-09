@@ -22,7 +22,7 @@ shader = SubResource( 1 )
 shader_param/color_tint = Color( 0.231373, 0.247059, 0.768627, 1 )
 shader_param/mix_amount = 1.4
 
-[sub_resource type="Shader" id=7]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 
 uniform vec4 color_tint : hint_color;
@@ -37,17 +37,17 @@ void fragment() {
 	COLOR = color;
 }"
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 7 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 shader_param/color_tint = Color( 1, 0.4, 0, 1 )
 shader_param/mix_amount = 1.6
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = SubResource( 1 )
-shader_param/color_tint = Color( 0.431398, 0.356013, 0.527344, 1 )
+shader_param/color_tint = Color( 0.193063, 0.0790315, 0.535156, 1 )
 shader_param/mix_amount = 1.6
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
 
 uniform float brightness = 1.0;
@@ -64,10 +64,10 @@ void fragment() {
     COLOR.rgb = c;
 }"
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
-shader_param/brightness = 0.85
-shader_param/contrast = 1.25
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/brightness = 0.9
+shader_param/contrast = 1.2
 shader_param/saturation = 0.8
 
 [node name="Overlays" type="CanvasLayer"]
@@ -83,7 +83,7 @@ rect_scale = Vector2( 4, 4 )
 
 [node name="LavaTint" type="ColorRect" parent="."]
 visible = false
-material = SubResource( 6 )
+material = SubResource( 4 )
 margin_right = 416.0
 margin_bottom = 234.0
 rect_scale = Vector2( 4, 4 )
@@ -103,7 +103,7 @@ __meta__ = {
 
 [node name="NightEffect" type="ColorRect" parent="."]
 visible = false
-material = SubResource( 4 )
+material = SubResource( 7 )
 margin_right = 416.0
 margin_bottom = 234.0
 rect_scale = Vector2( 4, 4 )

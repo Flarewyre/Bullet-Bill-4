@@ -97,7 +97,9 @@ func _input(event):
 				obstacle_pos = correct_mouse_pos(obstacle_pos)
 				place_obstacle(obstacle_pos, terrain_type, flipped)
 			
-	elif event.is_action_pressed("switch_modes"):
+	elif event.is_action_pressed("switch_modes") and !SceneTransitions.transitioning:
+		SceneTransitions.transition()
+		yield(get_tree().create_timer(SceneTransitions.transition_time), "timeout")
 		remove_child(current_room_node)
 		get_tree().change_scene_to(load(PLAYER_SCENE))
 		
@@ -189,7 +191,7 @@ func _process(delta):
 			unload_room(last_room_node.room_index)
 
 	screen_detect_area.position = get_viewport().get_mouse_position()
-	if screen_detect_area.get_overlapping_areas().size() > 0 and swap_direction == 0:
+	if screen_detect_area.get_overlapping_areas().size() > 0 and swap_direction == 0 and !SceneTransitions.transitioning:
 		can_interact = true
 	else:
 		can_interact = false

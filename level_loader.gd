@@ -80,5 +80,7 @@ func _physics_process(delta):
 			camera.position.x = (ROOM_OFFSET.x * current_room) - 208
 
 func _input(event):
-	if event.is_action_pressed("switch_modes"):
+	if event.is_action_pressed("switch_modes") and !SceneTransitions.transitioning:
+		SceneTransitions.transition()
+		yield(get_tree().create_timer(SceneTransitions.transition_time), "timeout")
 		get_tree().change_scene_to(load(EDITOR_SCENE))
