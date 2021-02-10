@@ -12,8 +12,7 @@ const theme_textures = [
 ]
 
 func _init():
-	for index in range(25):
-		level.rooms.append(RoomData.new())
+	level.rooms.append(RoomData.new())
 
 func _input(event):
 	if !("mode" in get_tree().get_current_scene()): return

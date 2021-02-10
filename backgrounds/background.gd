@@ -34,6 +34,13 @@ func change_texture():
 	sprite.texture = load(THEME_BGS[CurrentLevelData.level.theme])
 	sprite_2.texture = load(THEME_BGS[CurrentLevelData.level.theme])
 	x_repeat = THEME_REPEATS[CurrentLevelData.level.theme]
+	
+	if CurrentLevelData.level.theme == 2:
+		sprite.material = load("res://misc/warp_material.tres")
+		sprite_2.material = sprite.material
+	else:
+		sprite.material = null
+		sprite_2.material = sprite.material
 
 func _process(delta):
 	var current_position = camera.position + camera.offset

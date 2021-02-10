@@ -8,3 +8,5 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="WinMusic" type="AudioStreamPlayer" parent="."]

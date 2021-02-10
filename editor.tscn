@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://editor.gd" type="Script" id=1]
 [ext_resource path="res://obstacles/grassland/sheet.png" type="Texture" id=2]
@@ -25,6 +25,17 @@
 [ext_resource path="res://ui/editor/enemies_button_hover.png" type="Texture" id=23]
 [ext_resource path="res://ui/editor/misc_button.png" type="Texture" id=24]
 [ext_resource path="res://overlays.tscn" type="PackedScene" id=25]
+[ext_resource path="res://editor/right_buttons.gd" type="Script" id=26]
+[ext_resource path="res://ui/editor/arrow_button_left_hover.png" type="Texture" id=27]
+[ext_resource path="res://ui/editor/arrow_button_right.png" type="Texture" id=28]
+[ext_resource path="res://ui/editor/arrow_button_right_hover.png" type="Texture" id=29]
+[ext_resource path="res://ui/editor/settings_button.png" type="Texture" id=30]
+[ext_resource path="res://ui/editor/decorations_button.png" type="Texture" id=31]
+[ext_resource path="res://ui/editor/decorations_button_hover.png" type="Texture" id=32]
+[ext_resource path="res://ui/editor/settings_button_hover.png" type="Texture" id=33]
+[ext_resource path="res://ui/editor/arrow_button_left.png" type="Texture" id=34]
+[ext_resource path="res://length_txt.gd" type="Script" id=35]
+[ext_resource path="res://fonts/DialougeFont/SuperMarioWorldTextBoxRegular-Y86j.ttf" type="DynamicFontData" id=36]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 3 )
@@ -117,7 +128,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0.25, 0.5 ),
 "transitions": PoolRealArray( 1, 2 ),
 "update": 0,
-"values": [ Vector2( 208, 853 ), Vector2( 208, 805 ) ]
+"values": [ Vector2( 216, 853 ), Vector2( 216, 805 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Obstacles:rect_position")
@@ -129,7 +140,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.25 ),
 "transitions": PoolRealArray( 2, 1 ),
 "update": 0,
-"values": [ Vector2( 205.48, 805 ), Vector2( 205.48, 853 ) ]
+"values": [ Vector2( 216, 805 ), Vector2( 216, 853 ) ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -168,7 +179,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5 ),
 "transitions": PoolRealArray( 2, 1, 2 ),
 "update": 0,
-"values": [ Vector2( 205.48, 805 ), Vector2( 205.48, 853 ), Vector2( 205.48, 805 ) ]
+"values": [ Vector2( 216, 805 ), Vector2( 216, 853 ), Vector2( 216, 805 ) ]
 }
 tracks/3/type = "method"
 tracks/3/path = NodePath("Obstacles/Panel")
@@ -245,7 +256,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.25 ),
 "transitions": PoolRealArray( 2, 1 ),
 "update": 0,
-"values": [ Vector2( 208, 805 ), Vector2( 208, 853 ) ]
+"values": [ Vector2( 216, 805 ), Vector2( 216, 853 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Obstacles:rect_position")
@@ -257,7 +268,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.2, 0.5 ),
 "transitions": PoolRealArray( 1, 0.5, 1 ),
 "update": 0,
-"values": [ Vector2( 205.48, 805 ), Vector2( 205.48, 853 ), Vector2( 205.48, 805 ) ]
+"values": [ Vector2( 216, 805 ), Vector2( 216, 853 ), Vector2( 216, 805 ) ]
 }
 tracks/6/type = "method"
 tracks/6/path = NodePath("Obstacles/Panel")
@@ -273,6 +284,12 @@ tracks/6/keys = {
 "method": "flip_sprites"
 } ]
 }
+
+[sub_resource type="DynamicFont" id=12]
+size = 8
+outline_size = 1
+outline_color = Color( 0.443137, 0.462745, 0.619608, 1 )
+font_data = ExtResource( 36 )
 
 [node name="Editor" type="Node2D"]
 script = ExtResource( 1 )
@@ -355,6 +372,7 @@ centered = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -366,6 +384,7 @@ texture = ExtResource( 7 )
 stretch_mode = 1
 script = ExtResource( 19 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -379,6 +398,7 @@ rect_scale = Vector2( 4, 4 )
 texture = SubResource( 4 )
 stretch_mode = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -392,6 +412,7 @@ rect_scale = Vector2( 4, 4 )
 texture = SubResource( 6 )
 stretch_mode = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -437,19 +458,45 @@ collision_mask = 524288
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScreenDetectArea"]
 shape = SubResource( 1 )
 
-[node name="RightLevelButtons" type="VBoxContainer" parent="."]
-margin_left = 1480.0
+[node name="RightButtons" type="VBoxContainer" parent="."]
+margin_left = 1490.0
 margin_top = 432.0
-margin_right = 1564.0
+margin_right = 1574.0
 margin_bottom = 766.0
+custom_constants/separation = 4
+alignment = 2
+script = ExtResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RoomLeft" type="TextureButton" parent="RightButtons"]
+margin_top = 137.0
+margin_right = 96.0
+margin_bottom = 233.0
+rect_min_size = Vector2( 96, 96 )
+size_flags_horizontal = 0
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 34 )
+texture_hover = ExtResource( 27 )
+expand = true
+
+[node name="RoomRight" type="TextureButton" parent="RightButtons"]
+margin_top = 237.0
+margin_right = 96.0
+margin_bottom = 333.0
+rect_min_size = Vector2( 96, 96 )
+size_flags_horizontal = 0
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 28 )
+texture_hover = ExtResource( 29 )
+expand = true
+
 [node name="Buttons" type="HBoxContainer" parent="."]
-margin_left = 208.0
+visible = false
+margin_left = 216.0
 margin_top = 805.0
-margin_right = 1455.0
+margin_right = 1443.0
 margin_bottom = 901.0
 custom_constants/separation = 15
 script = ExtResource( 12 )
@@ -492,9 +539,21 @@ texture_pressed = ExtResource( 22 )
 texture_hover = ExtResource( 23 )
 expand = true
 
-[node name="Misc" type="TextureButton" parent="Buttons"]
+[node name="Decorations" type="TextureButton" parent="Buttons"]
 margin_left = 621.0
 margin_right = 813.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 192, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 3
+texture_normal = ExtResource( 31 )
+texture_pressed = ExtResource( 31 )
+texture_hover = ExtResource( 32 )
+expand = true
+
+[node name="Misc" type="TextureButton" parent="Buttons"]
+margin_left = 828.0
+margin_right = 1020.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 192, 0 )
 size_flags_horizontal = 0
@@ -504,11 +563,22 @@ texture_pressed = ExtResource( 24 )
 texture_hover = ExtResource( 8 )
 expand = true
 
+[node name="Settings" type="TextureButton" parent="Buttons"]
+margin_left = 1035.0
+margin_right = 1227.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 192, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 3
+texture_normal = ExtResource( 30 )
+texture_pressed = ExtResource( 30 )
+texture_hover = ExtResource( 33 )
+expand = true
+
 [node name="Obstacles" type="HBoxContainer" parent="."]
-visible = false
-margin_left = 205.48
+margin_left = 216.0
 margin_top = 805.0
-margin_right = 1452.48
+margin_right = 1463.0
 margin_bottom = 901.0
 custom_constants/separation = 15
 script = ExtResource( 14 )
@@ -655,3 +725,16 @@ __meta__ = {
 anims/close_Obstacles = SubResource( 9 )
 anims/flip_Obstacles = SubResource( 10 )
 anims/open_Obstacles = SubResource( 11 )
+
+[node name="Length" type="Label" parent="."]
+margin_left = 1490.0
+margin_top = 90.1921
+margin_right = 1540.0
+margin_bottom = 104.192
+rect_scale = Vector2( 4, 4 )
+custom_fonts/font = SubResource( 12 )
+text = "L - 0"
+script = ExtResource( 35 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

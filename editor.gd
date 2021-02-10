@@ -84,6 +84,35 @@ func delete_object(index : int):
 	CurrentLevelData.level.rooms[current_room].objects.remove(index)
 	current_room_node.load_room()
 
+func delete_last_empty():
+	if CurrentLevelData.level.rooms.size() <= 1 or current_room == (CurrentLevelData.level.rooms.size() - 1): return
+
+	var room = CurrentLevelData.level.rooms[CurrentLevelData.level.rooms.size() - 1]
+	
+	if room.obstacles == [] and room.objects == []:
+		CurrentLevelData.level.rooms.remove(CurrentLevelData.level.rooms.size() - 1)
+		delete_last_empty()
+
+func move_room(new_swap_direction):
+	if swap_direction != 0: return
+	
+	var condition = current_room - 1 >= 0
+	if new_swap_direction == -1:
+		condition = true
+		if current_room + 1 >= CurrentLevelData.level.rooms.size():
+			CurrentLevelData.level.rooms.append(RoomData.new())
+	
+	if condition:
+		current_room -= 1 * new_swap_direction
+		last_room_node = current_room_node
+		current_room_node = load(ROOM_SCENE).instance()
+		current_room_node.position.x = -ROOM_WIDTH * new_swap_direction
+		can_interact = false
+		swap_direction = new_swap_direction
+		load_room(current_room_node, current_room)
+		
+		delete_last_empty()
+
 func _input(event):
 	if !can_interact: return
 	
@@ -127,24 +156,10 @@ func _input(event):
 		selecting_obstacle = false
 	
 	elif event.is_action_pressed("room_left"):
-		if current_room - 1 >= 0:
-			current_room -= 1
-			last_room_node = current_room_node
-			current_room_node = load(ROOM_SCENE).instance()
-			current_room_node.position.x = -ROOM_WIDTH
-			can_interact = false
-			swap_direction = 1
-			load_room(current_room_node, current_room)
+		move_room(1)
 	
 	elif event.is_action_pressed("room_right"):
-		if current_room + 1 < CurrentLevelData.level.rooms.size():
-			current_room += 1
-			last_room_node = current_room_node
-			current_room_node = load(ROOM_SCENE).instance()
-			current_room_node.position.x = ROOM_WIDTH
-			can_interact = false
-			swap_direction = -1
-			load_room(current_room_node, current_room)
+		move_room(-1)
 	
 	elif event.is_action_pressed("change_theme"):
 		CurrentLevelData.level.theme = wrapi(CurrentLevelData.level.theme + 1, 0, CurrentLevelData.theme_textures.size())

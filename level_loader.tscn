@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://level_loader.gd" type="Script" id=1]
 [ext_resource path="res://characters/bullet/bullet.tscn" type="PackedScene" id=2]
@@ -9,8 +9,11 @@
 [ext_resource path="res://obstacles/grassland/sheet.png" type="Texture" id=7]
 [ext_resource path="res://characters/bullet/textures/intro/blaster.png" type="Texture" id=8]
 [ext_resource path="res://characters/bullet/cannon_sound.wav" type="AudioStream" id=9]
+[ext_resource path="res://misc/sparks.png" type="Texture" id=10]
+[ext_resource path="res://misc/firework.wav" type="AudioStream" id=11]
+[ext_resource path="res://misc/firework.png" type="Texture" id=12]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 script/source = "extends Sprite
 
 export(Array, String) var ids
@@ -19,8 +22,241 @@ func _ready():
 	texture = load(ids[CurrentLevelData.level.theme])
 "
 
-[sub_resource type="Animation" id=1]
-resource_name = "start"
+[sub_resource type="Animation" id=4]
+resource_name = "fireworks"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:shake_time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.7 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 11 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/CPUParticles2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 256, 256 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.2, 0.95, 1 ),
+"transitions": PoolRealArray( 0.392292, 0, 1 ),
+"update": 0,
+"values": [ Vector2( 256, 972 ), Vector2( 256, 256 ), Vector2( 256, 972 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/Sprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.2, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ 0, 0, 2 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "fireworks2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:shake_time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.7 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 11 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/CPUParticles2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1408, 256 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.2, 0.95, 1 ),
+"transitions": PoolRealArray( 0.392292, 0, 1 ),
+"update": 0,
+"values": [ Vector2( 1408, 972 ), Vector2( 1408, 256 ), Vector2( 1408, 972 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/Sprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.2, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ 0, 0, 2 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "fireworks3"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:shake_time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.7 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 11 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/CPUParticles2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 832, 128 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.2, 0.9, 1 ),
+"transitions": PoolRealArray( 0.392292, 0, 1 ),
+"update": 0,
+"values": [ Vector2( 832, 972 ), Vector2( 832, 128 ), Vector2( 832, 972 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/Sprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.2, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ 0, 0, 2 ]
+}
+
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Bullet:visible")
 tracks/0/interp = 1
@@ -121,8 +357,39 @@ func _ready():
 		set_bus(\"Reverb\")
 "
 
+[sub_resource type="CanvasItemMaterial" id=5]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0.833887, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 12 )
+region = Rect2( 36, 0, 18, 18 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 12 )
+region = Rect2( 18, 0, 18, 18 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 18, 18 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
+shake_time = 0.7
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
@@ -169,13 +436,47 @@ region_rect = Rect2( 48, 0, 48, 128 )
 position = Vector2( -784, 266 )
 texture = ExtResource( 8 )
 region_rect = Rect2( 48, 0, 48, 128 )
-script = SubResource( 2 )
+script = SubResource( 1 )
 ids = [ "res://characters/bullet/textures/intro/blaster.png", "res://characters/bullet/textures/intro/cave_blaster.png", "res://characters/bullet/textures/intro/blaster.png", "res://characters/bullet/textures/intro/blaster.png", "res://characters/bullet/textures/intro/blaster.png" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/start = SubResource( 1 )
+anims/fireworks = SubResource( 4 )
+anims/fireworks2 = SubResource( 11 )
+anims/fireworks3 = SubResource( 12 )
+anims/start = SubResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 11 )
 volume_db = -0.75
 script = SubResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer"]
+material = SubResource( 5 )
+position = Vector2( 832, 128 )
+scale = Vector2( 4, 4 )
+emitting = false
+amount = 256
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+texture = ExtResource( 10 )
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 693.333 )
+initial_velocity = 118.93
+initial_velocity_random = 1.0
+linear_accel = 100.0
+linear_accel_random = 1.0
+damping = 100.0
+scale_amount = 4.0
+color_ramp = SubResource( 13 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+anim_speed = 0.7
+
+[node name="Sprite" type="AnimatedSprite" parent="CanvasLayer"]
+position = Vector2( 832, 972 )
+scale = Vector2( 4, 4 )
+frames = SubResource( 10 )

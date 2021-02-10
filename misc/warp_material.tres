@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float warp_amount = 0.005;
+
+void fragment() {
+	vec2 uv = UV.xy;
+	uv.y += cos(uv.x*15.+TIME)*warp_amount;
+	uv.x += cos(uv.y*15.+TIME)*warp_amount;
+	COLOR = texture(TEXTURE, uv);
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/warp_amount = 0.004

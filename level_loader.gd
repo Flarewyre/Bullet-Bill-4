@@ -2,6 +2,7 @@ extends Node2D
 
 const ROOM_OFFSET = Vector2(416, 234)
 const ROOM_SCENE = "res://room.tscn"
+const GOAL_SCENE = "res://goal_room.tscn"
 const EDITOR_SCENE = "res://editor.tscn"
 
 var mode := 0
@@ -20,9 +21,13 @@ var amount_of_rooms : int
 
 var end := false
 export var move_camera := false
-var shake_time := 0.0
+export var shake_time := 0.0
 var current_zoom := Vector2(1, 1)
 var zoom_speed := 2.0
+
+var won := false
+
+var last_room_pos : Vector2
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
@@ -31,14 +36,29 @@ func _ready():
 	load_level(CurrentLevelData.level)
 	animation_player.play("start")
 	platform.texture = load(CurrentLevelData.theme_textures[CurrentLevelData.level.theme])
+	shake_time = 0
 
-func load_room(room, index):
+func win(hit_tape):
+	won = true
+	Music.play_win_music(hit_tape)
+	
+	if hit_tape:
+		yield(get_tree().create_timer(1), "timeout")
+		animation_player.play("fireworks")
+		yield(get_tree().create_timer(2.25), "timeout")
+		animation_player.play("fireworks2")
+		yield(get_tree().create_timer(2.25), "timeout")
+		animation_player.play("fireworks3")
+
+func load_room(room, index, room_rotation = 0):
 	var new_room = load(ROOM_SCENE).instance()
 	loaded_rooms.append(new_room)
 	new_room.name = "Room_" + str(index)
 	new_room.room_index = index
+	new_room.rotation_degrees = room_rotation
 	new_room.load_room()
-	new_room.position.x = ROOM_OFFSET.x * index
+	
+	new_room.position = (last_room_pos + Vector2(ROOM_OFFSET.x, 0))
 	rooms_node.add_child(new_room)
 
 func unload_room(index):
@@ -51,7 +71,6 @@ func load_level(level : Level):
 	amount_of_rooms = level.rooms.size()
 	current_room = 0
 	load_room(level.rooms[0], 0)
-	load_room(level.rooms[1], 1)
 
 func _physics_process(delta):
 	
@@ -68,16 +87,21 @@ func _physics_process(delta):
 	camera.zoom = current_zoom / 4
 	current_zoom = lerp(current_zoom, Vector2(1, 1), delta * zoom_speed)
 	
-	if !move_camera or end: return
+	if !move_camera: return
 	camera.position.x += 8
-	if (camera.position.x - 208) > (ROOM_OFFSET.x * current_room):
+	
+	if end: return
+	if (camera.position.x - 208) > last_room_pos.x + ROOM_OFFSET.x:
 		unload_room(current_room - 1)
 		current_room += 1
 		if amount_of_rooms > current_room:
-			load_room(level_cached.rooms[current_room], current_room)
+			last_room_pos = last_room_pos + Vector2(ROOM_OFFSET.x, 0)
+			load_room(level_cached.rooms[current_room], current_room, 0)
 		else:
 			end = true
-			camera.position.x = (ROOM_OFFSET.x * current_room) - 208
+			var goal_room = load(GOAL_SCENE).instance()
+			goal_room.position = last_room_pos + Vector2(ROOM_OFFSET.x * 3, 0)
+			rooms_node.add_child(goal_room)
 
 func _input(event):
 	if event.is_action_pressed("switch_modes") and !SceneTransitions.transitioning:

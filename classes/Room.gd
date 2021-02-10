@@ -1,6 +1,7 @@
 extends Node2D
 
-const BOUNDS = Vector2(26, 15)
+var bounds = Vector2(26, 15)
+
 var obstacles := []
 var objects := []
 var room_index := 0
@@ -58,7 +59,7 @@ func load_room():
 func create_obstacles():
 	var index = 0
 	for obstacle in obstacles:
-		obstacle.height = obstacle.determine_height(BOUNDS.y)
+		obstacle.height = obstacle.determine_height(bounds.y)
 		
 		var obstacle_node = obstacle.return_node()
 		obstacle_node.position = obstacle.position * 16
