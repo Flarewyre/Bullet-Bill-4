@@ -12,4 +12,4 @@ dest_files=[ "res://.import/overworld.ogg-b29d6368bf209e5cb19880241b4526a9.oggst
 [params]
 
 loop=true
-loop_offset=2.775
+loop_offset=0.79

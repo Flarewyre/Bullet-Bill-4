@@ -14,9 +14,16 @@ const LEVEL_THEMES := [
 ]
 
 var last_mode := 0
-var lerp_win_music = false
+var won := false
+var lerp_win_music := false
 
 var time := 0.0
+var muted := false
+
+func _input(event):
+	if event.is_action_pressed("mute_music"):
+		muted = !muted
+		AudioServer.set_bus_volume_db(2, -80 if muted else 0)
 
 func _process(delta):
 	time += delta
@@ -28,6 +35,7 @@ func _process(delta):
 		current_mode = get_tree().get_current_scene().mode
 	
 	if current_mode != last_mode:
+		won = false
 		lerp_win_music = false
 		volume_db = 0
 		win_music_player.volume_db = -80
@@ -47,6 +55,8 @@ func _process(delta):
 		win_music_player.volume_db = lerp(win_music_player.volume_db, 0, delta * 4)
 
 func play_win_music(hit_tape):
+	won = true
+	
 	win_music_player.stream = load(WIN_MUSIC) if hit_tape else load(WIN_MUSIC_2)
 	win_music_player.play()
 

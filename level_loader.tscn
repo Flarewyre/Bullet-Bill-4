@@ -52,7 +52,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 )
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/CPUParticles2D:emitting")
+tracks/2/path = NodePath("Fireworks/CPUParticles2D:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -64,7 +64,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("CanvasLayer/CPUParticles2D:position")
+tracks/3/path = NodePath("Fireworks/CPUParticles2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -76,7 +76,7 @@ tracks/3/keys = {
 "values": [ Vector2( 256, 256 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("CanvasLayer/Sprite:position")
+tracks/4/path = NodePath("Fireworks/Sprite:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -88,7 +88,7 @@ tracks/4/keys = {
 "values": [ Vector2( 256, 972 ), Vector2( 256, 256 ), Vector2( 256, 972 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("CanvasLayer/Sprite:frame")
+tracks/5/path = NodePath("Fireworks/Sprite:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -98,6 +98,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 2, 1 ),
 "update": 0,
 "values": [ 0, 0, 2 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -5.0 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -130,7 +142,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 )
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/CPUParticles2D:emitting")
+tracks/2/path = NodePath("Fireworks/CPUParticles2D:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -142,7 +154,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("CanvasLayer/CPUParticles2D:position")
+tracks/3/path = NodePath("Fireworks/CPUParticles2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -154,7 +166,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1408, 256 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("CanvasLayer/Sprite:position")
+tracks/4/path = NodePath("Fireworks/Sprite:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -166,7 +178,7 @@ tracks/4/keys = {
 "values": [ Vector2( 1408, 972 ), Vector2( 1408, 256 ), Vector2( 1408, 972 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("CanvasLayer/Sprite:frame")
+tracks/5/path = NodePath("Fireworks/Sprite:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -208,7 +220,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 )
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/CPUParticles2D:emitting")
+tracks/2/path = NodePath("Fireworks/CPUParticles2D:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -220,7 +232,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("CanvasLayer/CPUParticles2D:position")
+tracks/3/path = NodePath("Fireworks/CPUParticles2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -232,7 +244,7 @@ tracks/3/keys = {
 "values": [ Vector2( 832, 128 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("CanvasLayer/Sprite:position")
+tracks/4/path = NodePath("Fireworks/Sprite:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -244,7 +256,7 @@ tracks/4/keys = {
 "values": [ Vector2( 832, 972 ), Vector2( 832, 128 ), Vector2( 832, 972 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("CanvasLayer/Sprite:frame")
+tracks/5/path = NodePath("Fireworks/Sprite:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -342,6 +354,18 @@ tracks/6/keys = {
 "stream": ExtResource( 9 )
 } ],
 "times": PoolRealArray( 0.5 )
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
 }
 
 [sub_resource type="GDScript" id=3]
@@ -447,14 +471,15 @@ anims/start = SubResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
-volume_db = -0.75
+volume_db = -10.0
 script = SubResource( 3 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Fireworks" type="CanvasLayer" parent="."]
+layer = -19
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Fireworks"]
 material = SubResource( 5 )
-position = Vector2( 832, 128 )
+position = Vector2( 256, 256 )
 scale = Vector2( 4, 4 )
 emitting = false
 amount = 256
@@ -476,7 +501,7 @@ hue_variation = 1.0
 hue_variation_random = 1.0
 anim_speed = 0.7
 
-[node name="Sprite" type="AnimatedSprite" parent="CanvasLayer"]
-position = Vector2( 832, 972 )
+[node name="Sprite" type="AnimatedSprite" parent="Fireworks"]
+position = Vector2( 256, 972 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 10 )

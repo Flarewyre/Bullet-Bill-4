@@ -100,7 +100,7 @@ func _physics_process(delta):
 		else:
 			end = true
 			var goal_room = load(GOAL_SCENE).instance()
-			goal_room.position = last_room_pos + Vector2(ROOM_OFFSET.x * 3, 0)
+			goal_room.position = last_room_pos + Vector2(ROOM_OFFSET.x * 2, 0)
 			rooms_node.add_child(goal_room)
 
 func _input(event):

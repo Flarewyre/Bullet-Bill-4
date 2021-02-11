@@ -12,4 +12,4 @@ dest_files=[ "res://.import/underwater.ogg-d81b6a6dce0971564c4f457c0dc68598.oggs
 [params]
 
 loop=true
-loop_offset=0.1
+loop_offset=0.137

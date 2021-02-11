@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ghost.ogg-3ebe4a5385b0d242e25ee43e92b8253f.oggstr"
+
+[deps]
+
+source_file="res://music/level_themes/ghost.ogg"
+dest_files=[ "res://.import/ghost.ogg-3ebe4a5385b0d242e25ee43e92b8253f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=22.861
