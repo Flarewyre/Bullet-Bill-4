@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://level_loader.gd" type="Script" id=1]
 [ext_resource path="res://characters/bullet/bullet.tscn" type="PackedScene" id=2]
@@ -13,7 +13,12 @@
 [ext_resource path="res://misc/firework.wav" type="AudioStream" id=11]
 [ext_resource path="res://misc/firework.png" type="Texture" id=12]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="Curve2D" id=34]
+_data = {
+"points": PoolVector2Array(  )
+}
+
+[sub_resource type="GDScript" id=24]
 script/source = "extends Sprite
 
 export(Array, String) var ids
@@ -22,7 +27,7 @@ func _ready():
 	texture = load(ids[CurrentLevelData.level.theme])
 "
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=25]
 resource_name = "fireworks"
 length = 2.0
 tracks/0/type = "value"
@@ -35,7 +40,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0.7 ]
+"values": [ 1.2 ]
 }
 tracks/1/type = "audio"
 tracks/1/path = NodePath("AudioStreamPlayer")
@@ -82,7 +87,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.2, 0.95, 1 ),
+"times": PoolRealArray( 0, 0.95, 1 ),
 "transitions": PoolRealArray( 0.392292, 0, 1 ),
 "update": 0,
 "values": [ Vector2( 256, 972 ), Vector2( 256, 256 ), Vector2( 256, 972 ) ]
@@ -94,10 +99,10 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.2, 0.4, 0.9 ),
-"transitions": PoolRealArray( 1, 2, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
 "update": 0,
-"values": [ 0, 0, 2 ]
+"values": [ 0, 2, 4 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("AudioStreamPlayer:volume_db")
@@ -111,8 +116,20 @@ tracks/6/keys = {
 "update": 0,
 "values": [ -5.0 ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath(".:shake_multiplier")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.5 ]
+}
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=26]
 resource_name = "fireworks2"
 length = 2.0
 tracks/0/type = "value"
@@ -125,7 +142,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0.7 ]
+"values": [ 1.2 ]
 }
 tracks/1/type = "audio"
 tracks/1/path = NodePath("AudioStreamPlayer")
@@ -172,7 +189,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.2, 0.95, 1 ),
+"times": PoolRealArray( 0, 0.95, 1 ),
 "transitions": PoolRealArray( 0.392292, 0, 1 ),
 "update": 0,
 "values": [ Vector2( 1408, 972 ), Vector2( 1408, 256 ), Vector2( 1408, 972 ) ]
@@ -184,13 +201,13 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.2, 0.4, 0.9 ),
-"transitions": PoolRealArray( 1, 2, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
 "update": 0,
-"values": [ 0, 0, 2 ]
+"values": [ 0, 2, 4 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=27]
 resource_name = "fireworks3"
 length = 2.0
 tracks/0/type = "value"
@@ -203,7 +220,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0.7 ]
+"values": [ 1.2 ]
 }
 tracks/1/type = "audio"
 tracks/1/path = NodePath("AudioStreamPlayer")
@@ -250,7 +267,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.2, 0.9, 1 ),
+"times": PoolRealArray( 0, 0.9, 1 ),
 "transitions": PoolRealArray( 0.392292, 0, 1 ),
 "update": 0,
 "values": [ Vector2( 832, 972 ), Vector2( 832, 128 ), Vector2( 832, 972 ) ]
@@ -262,13 +279,13 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.2, 0.4, 0.9 ),
-"transitions": PoolRealArray( 1, 2, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 0.5, 1 ),
 "update": 0,
-"values": [ 0, 0, 2 ]
+"values": [ 0, 2, 4 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=28]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Bullet:visible")
 tracks/0/interp = 1
@@ -367,8 +384,20 @@ tracks/7/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("Intro:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=29]
 script/source = "extends AudioStreamPlayer
 
 var echo_themes = [
@@ -381,39 +410,59 @@ func _ready():
 		set_bus(\"Reverb\")
 "
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=30]
 particles_animation = true
 particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id=13]
+[sub_resource type="Gradient" id=31]
 offsets = PoolRealArray( 0.833887, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 12 )
-region = Rect2( 36, 0, 18, 18 )
+region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 12 )
-region = Rect2( 18, 0, 18, 18 )
+region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 12 )
-region = Rect2( 0, 0, 18, 18 )
+region = Rect2( 32, 0, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 12 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 12 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=32]
 animations = [ {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
+[sub_resource type="GDScript" id=33]
+script/source = "extends AnimatedSprite
+
+#var change_timer = 0.1
+#var hue = 0
+
+#func _process(delta):
+	#change_timer -= delta
+	#if change_timer <= 0:
+		#hue += 0.1
+		#self_modulate = Color().from_hsv(hue, 0.5, 1)
+	#	change_timer = 0.1"
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
-shake_time = 0.7
 
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 2
@@ -422,6 +471,9 @@ rotating = true
 current = true
 zoom = Vector2( 0.25, 0.25 )
 script = ExtResource( 6 )
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 34 )
 
 [node name="Bullet" parent="." instance=ExtResource( 2 )]
 visible = false
@@ -460,25 +512,24 @@ region_rect = Rect2( 48, 0, 48, 128 )
 position = Vector2( -784, 266 )
 texture = ExtResource( 8 )
 region_rect = Rect2( 48, 0, 48, 128 )
-script = SubResource( 1 )
+script = SubResource( 24 )
 ids = [ "res://characters/bullet/textures/intro/blaster.png", "res://characters/bullet/textures/intro/cave_blaster.png", "res://characters/bullet/textures/intro/blaster.png", "res://characters/bullet/textures/intro/blaster.png", "res://characters/bullet/textures/intro/blaster.png" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fireworks = SubResource( 4 )
-anims/fireworks2 = SubResource( 11 )
-anims/fireworks3 = SubResource( 12 )
-anims/start = SubResource( 2 )
+anims/fireworks = SubResource( 25 )
+anims/fireworks2 = SubResource( 26 )
+anims/fireworks3 = SubResource( 27 )
+anims/start = SubResource( 28 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-volume_db = -10.0
-script = SubResource( 3 )
+stream = ExtResource( 9 )
+script = SubResource( 29 )
 
 [node name="Fireworks" type="CanvasLayer" parent="."]
 layer = -19
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Fireworks"]
-material = SubResource( 5 )
+material = SubResource( 30 )
 position = Vector2( 256, 256 )
 scale = Vector2( 4, 4 )
 emitting = false
@@ -496,7 +547,7 @@ linear_accel = 100.0
 linear_accel_random = 1.0
 damping = 100.0
 scale_amount = 4.0
-color_ramp = SubResource( 13 )
+color_ramp = SubResource( 31 )
 hue_variation = 1.0
 hue_variation_random = 1.0
 anim_speed = 0.7
@@ -504,4 +555,5 @@ anim_speed = 0.7
 [node name="Sprite" type="AnimatedSprite" parent="Fireworks"]
 position = Vector2( 256, 972 )
 scale = Vector2( 4, 4 )
-frames = SubResource( 10 )
+frames = SubResource( 32 )
+script = SubResource( 33 )

@@ -15,7 +15,7 @@ func set_height(height):
 	collision.shape = new_shape
 	collision.position = new_shape.extents
 
-	sprite.region_rect.size.y = (height * 16) + 32
+	sprite.region_rect.size.y = (height * 16) + 128
 
 func flip():
 	scale.y = -scale.y

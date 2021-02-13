@@ -28,7 +28,7 @@ func _ready():
 	change_texture()
 	
 	sprite_2.position.x = x_repeat * 4
-	last_position = camera.position + camera.offset
+	last_position = camera.position
 
 func change_texture():
 	sprite.texture = load(THEME_BGS[CurrentLevelData.level.theme])
@@ -43,8 +43,11 @@ func change_texture():
 		sprite_2.material = sprite.material
 
 func _process(delta):
-	var current_position = camera.position + camera.offset
-	var increment = (current_position.x - last_position.x) / 4
+	var current_position = camera.position
+	var incrementx = abs(current_position.x - last_position.x) / 4
+	var incrementy = abs(current_position.y - last_position.y) / 4
+	
+	var increment = incrementx + incrementy
 	
 	sprite.position.x -= increment
 	sprite_2.position.x -= increment

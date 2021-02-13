@@ -39,6 +39,7 @@ func _physics_process(delta):
 	
 	var current_camera_pos = camera.position + camera.offset
 	position = lerp(position, get_global_mouse_position() + ((current_camera_pos - last_camera_pos) * 4), delta * reaction_speed)
+	rotation = camera.rotation
 	last_camera_pos = current_camera_pos
 
 func kill(body):
